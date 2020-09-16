@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    slqserver1:
+      #SQLServer
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      jdbc-url: jdbc:sqlserver://localhost:1433;DatabaseName=lvtemporary
+      username: sa
+      password: 123456
+      #postgresql
+    slqserver2:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://47.113.94.121/bestmanabc_lingmu?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+      username: postgres
+      password: 123qweASD
+    type: com.zaxxer.hikari.HikariDataSource
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+  #设置文件路径
+  #C:\\Users\\cheng\\Desktop\\lvtemporary.xlsx
+file:
+  path: C:\\Users\\cheng\\Desktop\\test.xlsx
+  #设置程序运行间隔时间
+intevalPeriod: 300000
+#这是以毫秒为单位的延迟之前的任务执行
+delay: 1000

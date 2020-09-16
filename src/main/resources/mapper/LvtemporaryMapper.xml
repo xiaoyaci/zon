@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvtemporary.dao.LvtemporaryMapper">
+    <resultMap id="BaseResultMap" type="com.lvtemporary.entity.Lvtemporary">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="discharge_curve_i" jdbcType="VARCHAR" property="dischargeCurveI"/>
+        <result column="discharge_curve_p2" jdbcType="VARCHAR" property="dischargeCurveP2"/>
+        <result column="discharge_curve_med_i" jdbcType="VARCHAR" property="dischargeCurveMedI"/>
+        <result column="discharge_curve_med_p2" jdbcType="VARCHAR" property="dischargeCurveMedP2"/>
+        <result column="l_line_p1" jdbcType="VARCHAR" property="lLineP1"/>
+        <result column="l_line_p2" jdbcType="VARCHAR" property="lLineP2"/>
+        <result column="m_line_p1" jdbcType="VARCHAR" property="mLineP1"/>
+        <result column="m_line_p2" jdbcType="VARCHAR" property="mLineP2"/>
+        <result column="h_line_p1" jdbcType="VARCHAR" property="hLineP1"/>
+        <result column="h_line_p2" jdbcType="VARCHAR" property="hLineP2"/>
+        <result column="pressure_curve_p1" jdbcType="VARCHAR" property="pressureCurveP1"/>
+        <result column="pressure_curve_p2" jdbcType="VARCHAR" property="pressureCurveP2"/>
+        <result column="com_id" jdbcType="VARCHAR" property="comId"/>
+        <result column="pro_line" jdbcType="VARCHAR" property="proLine"/>
+        <result column="line_work" jdbcType="VARCHAR" property="lineWork"/>
+        <result column="device_position" jdbcType="VARCHAR" property="devicePosition"/>
+        <result column="bar_cord" jdbcType="VARCHAR" property="barCord"/>
+        <result column="data_p2l" jdbcType="VARCHAR" property="dataP2l"/>
+        <result column="data_1_2" jdbcType="VARCHAR" property="data12"/>
+        <result column="data_2_3" jdbcType="VARCHAR" property="data23"/>
+        <result column="data_2_4" jdbcType="VARCHAR" property="data24"/>
+        <result column="data_p2h" jdbcType="VARCHAR" property="dataP2h"/>
+        <result column="data_5_6" jdbcType="VARCHAR" property="data56"/>
+        <result column="data_6_7" jdbcType="VARCHAR" property="data67"/>
+        <result column="data_6_8" jdbcType="VARCHAR" property="data68"/>
+        <result column="data_imax" jdbcType="VARCHAR" property="dataImax"/>
+        <result column="data_q10" jdbcType="VARCHAR" property="dataQ10"/>
+        <result column="data_q11" jdbcType="VARCHAR" property="dataQ11"/>
+        <result column="result" jdbcType="VARCHAR" property="result"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, discharge_curve_i, discharge_curve_p2, discharge_curve_med_i, discharge_curve_med_p2,
+        l_line_p1, l_line_p2, m_line_p1, m_line_p2, h_line_p1, h_line_p2, pressure_curve_p1,
+        pressure_curve_p2, com_id, pro_line, line_work, device_position, bar_cord, data_p2l,
+        data_1_2, data_2_3, data_2_4, data_p2h, data_5_6, data_6_7, data_6_8, data_imax,
+        data_q10, data_q11, result, create_time
+    </sql>
+    <select id="selectByExample" parameterType="com.lvtemporary.entity.LvtemporaryExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from lvtemporary
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from lvtemporary
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from lvtemporary
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.lvtemporary.entity.LvtemporaryExample">
+        delete from lvtemporary
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.lvtemporary.entity.Lvtemporary">
+        insert into lvtemporary (id, discharge_curve_i, discharge_curve_p2,
+        discharge_curve_med_i, discharge_curve_med_p2,
+        l_line_p1, l_line_p2, m_line_p1,
+        m_line_p2, h_line_p1, h_line_p2,
+        pressure_curve_p1, pressure_curve_p2, com_id,
+        pro_line, line_work, device_position,
+        bar_cord, data_p2l, data_1_2,
+        data_2_3, data_2_4, data_p2h,
+        data_5_6, data_6_7, data_6_8,
+        data_imax, data_q10, data_q11,
+        result, create_time)
+        values (#{id,jdbcType=BIGINT}, #{dischargeCurveI,jdbcType=VARCHAR}, #{dischargeCurveP2,jdbcType=VARCHAR},
+        #{dischargeCurveMedI,jdbcType=VARCHAR}, #{dischargeCurveMedP2,jdbcType=VARCHAR},
+        #{lLineP1,jdbcType=VARCHAR}, #{lLineP2,jdbcType=VARCHAR}, #{mLineP1,jdbcType=VARCHAR},
+        #{mLineP2,jdbcType=VARCHAR}, #{hLineP1,jdbcType=VARCHAR}, #{hLineP2,jdbcType=VARCHAR},
+        #{pressureCurveP1,jdbcType=VARCHAR}, #{pressureCurveP2,jdbcType=VARCHAR}, #{comId,jdbcType=VARCHAR},
+        #{proLine,jdbcType=VARCHAR}, #{lineWork,jdbcType=VARCHAR}, #{devicePosition,jdbcType=VARCHAR},
+        #{barCord,jdbcType=VARCHAR}, #{dataP2l,jdbcType=VARCHAR}, #{data12,jdbcType=VARCHAR},
+        #{data23,jdbcType=VARCHAR}, #{data24,jdbcType=VARCHAR}, #{dataP2h,jdbcType=VARCHAR},
+        #{data56,jdbcType=VARCHAR}, #{data67,jdbcType=VARCHAR}, #{data68,jdbcType=VARCHAR},
+        #{dataImax,jdbcType=VARCHAR}, #{dataQ10,jdbcType=VARCHAR}, #{dataQ11,jdbcType=VARCHAR},
+        #{result,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.lvtemporary.entity.Lvtemporary">
+        insert into lvtemporary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="dischargeCurveI != null">
+                discharge_curve_i,
+            </if>
+            <if test="dischargeCurveP2 != null">
+                discharge_curve_p2,
+            </if>
+            <if test="dischargeCurveMedI != null">
+                discharge_curve_med_i,
+            </if>
+            <if test="dischargeCurveMedP2 != null">
+                discharge_curve_med_p2,
+            </if>
+            <if test="lLineP1 != null">
+                l_line_p1,
+            </if>
+            <if test="lLineP2 != null">
+                l_line_p2,
+            </if>
+            <if test="mLineP1 != null">
+                m_line_p1,
+            </if>
+            <if test="mLineP2 != null">
+                m_line_p2,
+            </if>
+            <if test="hLineP1 != null">
+                h_line_p1,
+            </if>
+            <if test="hLineP2 != null">
+                h_line_p2,
+            </if>
+            <if test="pressureCurveP1 != null">
+                pressure_curve_p1,
+            </if>
+            <if test="pressureCurveP2 != null">
+                pressure_curve_p2,
+            </if>
+            <if test="comId != null">
+                com_id,
+            </if>
+            <if test="proLine != null">
+                pro_line,
+            </if>
+            <if test="lineWork != null">
+                line_work,
+            </if>
+            <if test="devicePosition != null">
+                device_position,
+            </if>
+            <if test="barCord != null">
+                bar_cord,
+            </if>
+            <if test="dataP2l != null">
+                data_p2l,
+            </if>
+            <if test="data12 != null">
+                data_1_2,
+            </if>
+            <if test="data23 != null">
+                data_2_3,
+            </if>
+            <if test="data24 != null">
+                data_2_4,
+            </if>
+            <if test="dataP2h != null">
+                data_p2h,
+            </if>
+            <if test="data56 != null">
+                data_5_6,
+            </if>
+            <if test="data67 != null">
+                data_6_7,
+            </if>
+            <if test="data68 != null">
+                data_6_8,
+            </if>
+            <if test="dataImax != null">
+                data_imax,
+            </if>
+            <if test="dataQ10 != null">
+                data_q10,
+            </if>
+            <if test="dataQ11 != null">
+                data_q11,
+            </if>
+            <if test="result != null">
+                result,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="dischargeCurveI != null">
+                #{dischargeCurveI,jdbcType=VARCHAR},
+            </if>
+            <if test="dischargeCurveP2 != null">
+                #{dischargeCurveP2,jdbcType=VARCHAR},
+            </if>
+            <if test="dischargeCurveMedI != null">
+                #{dischargeCurveMedI,jdbcType=VARCHAR},
+            </if>
+            <if test="dischargeCurveMedP2 != null">
+                #{dischargeCurveMedP2,jdbcType=VARCHAR},
+            </if>
+            <if test="lLineP1 != null">
+                #{lLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="lLineP2 != null">
+                #{lLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="mLineP1 != null">
+                #{mLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="mLineP2 != null">
+                #{mLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="hLineP1 != null">
+                #{hLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="hLineP2 != null">
+                #{hLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="pressureCurveP1 != null">
+                #{pressureCurveP1,jdbcType=VARCHAR},
+            </if>
+            <if test="pressureCurveP2 != null">
+                #{pressureCurveP2,jdbcType=VARCHAR},
+            </if>
+            <if test="comId != null">
+                #{comId,jdbcType=VARCHAR},
+            </if>
+            <if test="proLine != null">
+                #{proLine,jdbcType=VARCHAR},
+            </if>
+            <if test="lineWork != null">
+                #{lineWork,jdbcType=VARCHAR},
+            </if>
+            <if test="devicePosition != null">
+                #{devicePosition,jdbcType=VARCHAR},
+            </if>
+            <if test="barCord != null">
+                #{barCord,jdbcType=VARCHAR},
+            </if>
+            <if test="dataP2l != null">
+                #{dataP2l,jdbcType=VARCHAR},
+            </if>
+            <if test="data12 != null">
+                #{data12,jdbcType=VARCHAR},
+            </if>
+            <if test="data23 != null">
+                #{data23,jdbcType=VARCHAR},
+            </if>
+            <if test="data24 != null">
+                #{data24,jdbcType=VARCHAR},
+            </if>
+            <if test="dataP2h != null">
+                #{dataP2h,jdbcType=VARCHAR},
+            </if>
+            <if test="data56 != null">
+                #{data56,jdbcType=VARCHAR},
+            </if>
+            <if test="data67 != null">
+                #{data67,jdbcType=VARCHAR},
+            </if>
+            <if test="data68 != null">
+                #{data68,jdbcType=VARCHAR},
+            </if>
+            <if test="dataImax != null">
+                #{dataImax,jdbcType=VARCHAR},
+            </if>
+            <if test="dataQ10 != null">
+                #{dataQ10,jdbcType=VARCHAR},
+            </if>
+            <if test="dataQ11 != null">
+                #{dataQ11,jdbcType=VARCHAR},
+            </if>
+            <if test="result != null">
+                #{result,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.lvtemporary.entity.LvtemporaryExample" resultType="java.lang.Long">
+        select count(*) from lvtemporary
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update lvtemporary
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.dischargeCurveI != null">
+                discharge_curve_i = #{record.dischargeCurveI,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dischargeCurveP2 != null">
+                discharge_curve_p2 = #{record.dischargeCurveP2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dischargeCurveMedI != null">
+                discharge_curve_med_i = #{record.dischargeCurveMedI,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dischargeCurveMedP2 != null">
+                discharge_curve_med_p2 = #{record.dischargeCurveMedP2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lLineP1 != null">
+                l_line_p1 = #{record.lLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lLineP2 != null">
+                l_line_p2 = #{record.lLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mLineP1 != null">
+                m_line_p1 = #{record.mLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mLineP2 != null">
+                m_line_p2 = #{record.mLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hLineP1 != null">
+                h_line_p1 = #{record.hLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hLineP2 != null">
+                h_line_p2 = #{record.hLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pressureCurveP1 != null">
+                pressure_curve_p1 = #{record.pressureCurveP1,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pressureCurveP2 != null">
+                pressure_curve_p2 = #{record.pressureCurveP2,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comId != null">
+                com_id = #{record.comId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.proLine != null">
+                pro_line = #{record.proLine,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lineWork != null">
+                line_work = #{record.lineWork,jdbcType=VARCHAR},
+            </if>
+            <if test="record.devicePosition != null">
+                device_position = #{record.devicePosition,jdbcType=VARCHAR},
+            </if>
+            <if test="record.barCord != null">
+                bar_cord = #{record.barCord,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dataP2l != null">
+                data_p2l = #{record.dataP2l,jdbcType=VARCHAR},
+            </if>
+            <if test="record.data12 != null">
+                data_1_2 = #{record.data12,jdbcType=VARCHAR},
+            </if>
+            <if test="record.data23 != null">
+                data_2_3 = #{record.data23,jdbcType=VARCHAR},
+            </if>
+            <if test="record.data24 != null">
+                data_2_4 = #{record.data24,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dataP2h != null">
+                data_p2h = #{record.dataP2h,jdbcType=VARCHAR},
+            </if>
+            <if test="record.data56 != null">
+                data_5_6 = #{record.data56,jdbcType=VARCHAR},
+            </if>
+            <if test="record.data67 != null">
+                data_6_7 = #{record.data67,jdbcType=VARCHAR},
+            </if>
+            <if test="record.data68 != null">
+                data_6_8 = #{record.data68,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dataImax != null">
+                data_imax = #{record.dataImax,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dataQ10 != null">
+                data_q10 = #{record.dataQ10,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dataQ11 != null">
+                data_q11 = #{record.dataQ11,jdbcType=VARCHAR},
+            </if>
+            <if test="record.result != null">
+                result = #{record.result,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update lvtemporary
+        set id = #{record.id,jdbcType=BIGINT},
+        discharge_curve_i = #{record.dischargeCurveI,jdbcType=VARCHAR},
+        discharge_curve_p2 = #{record.dischargeCurveP2,jdbcType=VARCHAR},
+        discharge_curve_med_i = #{record.dischargeCurveMedI,jdbcType=VARCHAR},
+        discharge_curve_med_p2 = #{record.dischargeCurveMedP2,jdbcType=VARCHAR},
+        l_line_p1 = #{record.lLineP1,jdbcType=VARCHAR},
+        l_line_p2 = #{record.lLineP2,jdbcType=VARCHAR},
+        m_line_p1 = #{record.mLineP1,jdbcType=VARCHAR},
+        m_line_p2 = #{record.mLineP2,jdbcType=VARCHAR},
+        h_line_p1 = #{record.hLineP1,jdbcType=VARCHAR},
+        h_line_p2 = #{record.hLineP2,jdbcType=VARCHAR},
+        pressure_curve_p1 = #{record.pressureCurveP1,jdbcType=VARCHAR},
+        pressure_curve_p2 = #{record.pressureCurveP2,jdbcType=VARCHAR},
+        com_id = #{record.comId,jdbcType=VARCHAR},
+        pro_line = #{record.proLine,jdbcType=VARCHAR},
+        line_work = #{record.lineWork,jdbcType=VARCHAR},
+        device_position = #{record.devicePosition,jdbcType=VARCHAR},
+        bar_cord = #{record.barCord,jdbcType=VARCHAR},
+        data_p2l = #{record.dataP2l,jdbcType=VARCHAR},
+        data_1_2 = #{record.data12,jdbcType=VARCHAR},
+        data_2_3 = #{record.data23,jdbcType=VARCHAR},
+        data_2_4 = #{record.data24,jdbcType=VARCHAR},
+        data_p2h = #{record.dataP2h,jdbcType=VARCHAR},
+        data_5_6 = #{record.data56,jdbcType=VARCHAR},
+        data_6_7 = #{record.data67,jdbcType=VARCHAR},
+        data_6_8 = #{record.data68,jdbcType=VARCHAR},
+        data_imax = #{record.dataImax,jdbcType=VARCHAR},
+        data_q10 = #{record.dataQ10,jdbcType=VARCHAR},
+        data_q11 = #{record.dataQ11,jdbcType=VARCHAR},
+        result = #{record.result,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lvtemporary.entity.Lvtemporary">
+        update lvtemporary
+        <set>
+            <if test="dischargeCurveI != null">
+                discharge_curve_i = #{dischargeCurveI,jdbcType=VARCHAR},
+            </if>
+            <if test="dischargeCurveP2 != null">
+                discharge_curve_p2 = #{dischargeCurveP2,jdbcType=VARCHAR},
+            </if>
+            <if test="dischargeCurveMedI != null">
+                discharge_curve_med_i = #{dischargeCurveMedI,jdbcType=VARCHAR},
+            </if>
+            <if test="dischargeCurveMedP2 != null">
+                discharge_curve_med_p2 = #{dischargeCurveMedP2,jdbcType=VARCHAR},
+            </if>
+            <if test="lLineP1 != null">
+                l_line_p1 = #{lLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="lLineP2 != null">
+                l_line_p2 = #{lLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="mLineP1 != null">
+                m_line_p1 = #{mLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="mLineP2 != null">
+                m_line_p2 = #{mLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="hLineP1 != null">
+                h_line_p1 = #{hLineP1,jdbcType=VARCHAR},
+            </if>
+            <if test="hLineP2 != null">
+                h_line_p2 = #{hLineP2,jdbcType=VARCHAR},
+            </if>
+            <if test="pressureCurveP1 != null">
+                pressure_curve_p1 = #{pressureCurveP1,jdbcType=VARCHAR},
+            </if>
+            <if test="pressureCurveP2 != null">
+                pressure_curve_p2 = #{pressureCurveP2,jdbcType=VARCHAR},
+            </if>
+            <if test="comId != null">
+                com_id = #{comId,jdbcType=VARCHAR},
+            </if>
+            <if test="proLine != null">
+                pro_line = #{proLine,jdbcType=VARCHAR},
+            </if>
+            <if test="lineWork != null">
+                line_work = #{lineWork,jdbcType=VARCHAR},
+            </if>
+            <if test="devicePosition != null">
+                device_position = #{devicePosition,jdbcType=VARCHAR},
+            </if>
+            <if test="barCord != null">
+                bar_cord = #{barCord,jdbcType=VARCHAR},
+            </if>
+            <if test="dataP2l != null">
+                data_p2l = #{dataP2l,jdbcType=VARCHAR},
+            </if>
+            <if test="data12 != null">
+                data_1_2 = #{data12,jdbcType=VARCHAR},
+            </if>
+            <if test="data23 != null">
+                data_2_3 = #{data23,jdbcType=VARCHAR},
+            </if>
+            <if test="data24 != null">
+                data_2_4 = #{data24,jdbcType=VARCHAR},
+            </if>
+            <if test="dataP2h != null">
+                data_p2h = #{dataP2h,jdbcType=VARCHAR},
+            </if>
+            <if test="data56 != null">
+                data_5_6 = #{data56,jdbcType=VARCHAR},
+            </if>
+            <if test="data67 != null">
+                data_6_7 = #{data67,jdbcType=VARCHAR},
+            </if>
+            <if test="data68 != null">
+                data_6_8 = #{data68,jdbcType=VARCHAR},
+            </if>
+            <if test="dataImax != null">
+                data_imax = #{dataImax,jdbcType=VARCHAR},
+            </if>
+            <if test="dataQ10 != null">
+                data_q10 = #{dataQ10,jdbcType=VARCHAR},
+            </if>
+            <if test="dataQ11 != null">
+                data_q11 = #{dataQ11,jdbcType=VARCHAR},
+            </if>
+            <if test="result != null">
+                result = #{result,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lvtemporary.entity.Lvtemporary">
+        update lvtemporary
+        set discharge_curve_i = #{dischargeCurveI,jdbcType=VARCHAR},
+        discharge_curve_p2 = #{dischargeCurveP2,jdbcType=VARCHAR},
+        discharge_curve_med_i = #{dischargeCurveMedI,jdbcType=VARCHAR},
+        discharge_curve_med_p2 = #{dischargeCurveMedP2,jdbcType=VARCHAR},
+        l_line_p1 = #{lLineP1,jdbcType=VARCHAR},
+        l_line_p2 = #{lLineP2,jdbcType=VARCHAR},
+        m_line_p1 = #{mLineP1,jdbcType=VARCHAR},
+        m_line_p2 = #{mLineP2,jdbcType=VARCHAR},
+        h_line_p1 = #{hLineP1,jdbcType=VARCHAR},
+        h_line_p2 = #{hLineP2,jdbcType=VARCHAR},
+        pressure_curve_p1 = #{pressureCurveP1,jdbcType=VARCHAR},
+        pressure_curve_p2 = #{pressureCurveP2,jdbcType=VARCHAR},
+        com_id = #{comId,jdbcType=VARCHAR},
+        pro_line = #{proLine,jdbcType=VARCHAR},
+        line_work = #{lineWork,jdbcType=VARCHAR},
+        device_position = #{devicePosition,jdbcType=VARCHAR},
+        bar_cord = #{barCord,jdbcType=VARCHAR},
+        data_p2l = #{dataP2l,jdbcType=VARCHAR},
+        data_1_2 = #{data12,jdbcType=VARCHAR},
+        data_2_3 = #{data23,jdbcType=VARCHAR},
+        data_2_4 = #{data24,jdbcType=VARCHAR},
+        data_p2h = #{dataP2h,jdbcType=VARCHAR},
+        data_5_6 = #{data56,jdbcType=VARCHAR},
+        data_6_7 = #{data67,jdbcType=VARCHAR},
+        data_6_8 = #{data68,jdbcType=VARCHAR},
+        data_imax = #{dataImax,jdbcType=VARCHAR},
+        data_q10 = #{dataQ10,jdbcType=VARCHAR},
+        data_q11 = #{dataQ11,jdbcType=VARCHAR},
+        result = #{result,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,21 @@
+2020-05-09 10:33:38.283  INFO 23072 --- [main] c.l.lvtemporary.LvtemporaryApplication   : Starting LvtemporaryApplication on DESKTOP-ECKE3N0 with PID 23072 (D:\ideaWord\lvtemporary\target\classes started by cheng in D:\ideaWord\lvtemporary)
+2020-05-09 10:33:38.285  INFO 23072 --- [main] c.l.lvtemporary.LvtemporaryApplication   : No active profile set, falling back to default profiles: default
+2020-05-09 10:33:39.070  INFO 23072 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2020-05-09 10:33:39.088  INFO 23072 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 0 JDBC repository interfaces.
+2020-05-09 10:33:40.008  INFO 23072 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-09 10:33:40.019  INFO 23072 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-09 10:33:40.020  INFO 23072 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-09 10:33:40.278  INFO 23072 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-09 10:33:40.278  INFO 23072 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1893 ms
+2020-05-09 10:33:41.067  INFO 23072 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-09 10:33:41.423  INFO 23072 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-09 10:33:41.428  INFO 23072 --- [main] c.l.lvtemporary.LvtemporaryApplication   : Started LvtemporaryApplication in 3.669 seconds (JVM running for 4.644)
+2020-05-09 10:33:48.388  INFO 23072 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-09 10:33:48.389  INFO 23072 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-09 10:33:48.396  INFO 23072 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-05-09 10:33:48.418  INFO 23072 --- [Timer-0] controller.ILvtemporaryController        : 执行add方法！！！！！！
+2020-05-09 10:33:48.428  INFO 23072 --- [Timer-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-09 10:33:48.561  INFO 23072 --- [Timer-0] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-09 10:33:48.601 DEBUG 23072 --- [Timer-0] dao.LvtemporaryMapper.selectByExample    : ==>  Preparing: select id, discharge_curve_i, discharge_curve_p2, discharge_curve_med_i, discharge_curve_med_p2, l_line_p1, l_line_p2, m_line_p1, m_line_p2, h_line_p1, h_line_p2, pressure_curve_p1, pressure_curve_p2, com_id, pro_line, line_work, device_position, bar_cord, create_time, data_p2l, data_1_2, data_2_3, data_2_4, data_p2h, data_5_6, data_6_7, data_6_8, data_imax, data_q10, data_q11, result from lvtemporary 
+2020-05-09 10:33:48.612 DEBUG 23072 --- [Timer-0] dao.LvtemporaryMapper.selectByExample    : ==> Parameters: 
+2020-05-09 10:33:48.720 DEBUG 23072 --- [Timer-0] dao.LvtemporaryMapper.selectByExample    : <==      Total: 8

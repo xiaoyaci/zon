@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 引入配置文件 -->
+    <classPathEntry location="D:\resp\org\postgresql\postgresql\42.2.11\postgresql-42.2.11.jar"/>
+    <context id="context1" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接信息 -->
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://47.113.94.121:5432/bestmanabc_lingmu" userId="postgres"
+                        password="123qweASD"/>
+
+        <!-- 生成Model对象路径配置 -->
+        <javaModelGenerator
+                targetPackage="com.lvtemporary.entity"
+                targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成sqlXML文件路径配置 -->
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的类文件路径配置 -->
+        <javaClientGenerator
+                targetPackage="com.lvtemporary.dao"
+                targetProject="src\main\java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--要生成哪些表 -->
+        <table tableName="lvtemporary" domainObjectName="Lvtemporary"/>
+    </context>
+
+</generatorConfiguration>
